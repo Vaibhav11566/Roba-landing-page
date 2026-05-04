@@ -21,65 +21,45 @@ const XIcon = () => (
   </svg>
 );
 
-const socials = [
-  { icon: GithubIcon, label: "GitHub", href: "https://github.com" },
-  { icon: LinkedinIcon, label: "LinkedIn", href: "https://linkedin.com" },
-  { icon: XIcon, label: "Twitter / X", href: "https://x.com" },
-];
-
 export function Contact() {
   return (
-    <section id="contact" className="py-32 px-6">
-      <div className="max-w-2xl mx-auto text-center">
+    <section id="contact" className="py-28 px-6 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(99,102,241,0.08) 0%, transparent 70%)" }} />
+
+      <div className="max-w-xl mx-auto text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.5 }}
         >
-          <span
-            className="text-sm font-medium tracking-widest uppercase"
-            style={{ color: "var(--accent)" }}
-          >
+          <span className="text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full"
+            style={{ background: "rgba(129,140,248,0.1)", border: "1px solid rgba(129,140,248,0.2)", color: "var(--accent)" }}>
             Contact
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mt-5 mb-3 tracking-tight">
             Let&apos;s build something{" "}
             <span className="gradient-text">great.</span>
           </h2>
-          <p className="text-lg mb-10" style={{ color: "var(--muted)" }}>
-            Have an idea? Want to collaborate? Or just want to say hi — my inbox
-            is open.
+          <p className="text-base mb-10" style={{ color: "var(--muted)" }}>
+            Have an idea, want to collaborate, or just want to say hi —<br className="hidden sm:block" /> my inbox is always open.
           </p>
 
-          <a
-            href="mailto:vaibhavdabral1@gmail.com"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-white text-lg transition-all hover:scale-105 hover:shadow-lg mb-12"
-            style={{
-              background: "linear-gradient(135deg, #6366f1, #a855f7)",
-              boxShadow: "0 4px 24px rgba(99,102,241,0.3)",
-            }}
-          >
-            <Mail size={18} />
+          <a href="mailto:vaibhavdabral1@gmail.com"
+            className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white text-base mb-10">
+            <Mail size={17} />
             Say Hello
-            <ArrowRight size={16} />
+            <ArrowRight size={15} />
           </a>
 
-          <div className="flex items-center justify-center gap-4">
-            {socials.map(({ icon: Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105"
-                style={{
-                  background: "var(--card)",
-                  border: "1px solid var(--border)",
-                  color: "var(--foreground)",
-                }}
-                aria-label={label}
-              >
+          <div className="flex items-center justify-center gap-3">
+            {[
+              { icon: GithubIcon, label: "GitHub", href: "https://github.com" },
+              { icon: LinkedinIcon, label: "LinkedIn", href: "https://linkedin.com" },
+              { icon: XIcon, label: "Twitter / X", href: "https://x.com" },
+            ].map(({ icon: Icon, label, href }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105 glass-card"
+                style={{ color: "var(--foreground)" }} aria-label={label}>
                 <Icon />
                 <span className="hidden sm:inline">{label}</span>
               </a>

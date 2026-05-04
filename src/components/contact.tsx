@@ -2,70 +2,84 @@
 
 import { motion } from "framer-motion";
 import { Mail, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const GithubIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
   </svg>
 );
 
 const LinkedinIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
   </svg>
 );
 
 const XIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
 
 export function Contact() {
   return (
-    <section id="contact" className="py-28 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(99,102,241,0.08) 0%, transparent 70%)" }} />
+    <section id="contact" className="section-padding section-divider" style={{ background: "var(--section-alt)" }}>
+      <div className="page-container">
+        <div className="max-w-xl">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5 }}>
+            <span className="section-label">
+              Contact
+            </span>
+            <h2 className="section-heading mt-2">
+              Let&apos;s build something{" "}
+              <span className="gradient-text">great.</span>
+            </h2>
+            <p className="section-desc mb-8">
+              Have an idea, want to collaborate, or just want to say hi — my inbox is always open.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 16, marginBottom: 24 }}>
+              {[
+                { href: "tel:+918595836459", label: "📞  +91 85958 36459" },
+                { href: "mailto:vaibhavdabral1@gmail.com", label: "✉️  vaibhavdabral1@gmail.com" },
+              ].map(({ href, label }) => (
+                <a key={href} href={href}
+                  style={{ fontSize: 15, color: "rgba(255,255,255,0.65)", userSelect: "all", textDecoration: "none", transition: "color 0.2s ease" }}
+                  onMouseEnter={e => (e.currentTarget.style.color = "rgb(196,181,253)")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          </motion.div>
 
-      <div className="max-w-xl mx-auto text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.5 }}
-        >
-          <span className="text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full"
-            style={{ background: "rgba(129,140,248,0.1)", border: "1px solid rgba(129,140,248,0.2)", color: "var(--accent)" }}>
-            Contact
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-5 mb-3 tracking-tight">
-            Let&apos;s build something{" "}
-            <span className="gradient-text">great.</span>
-          </h2>
-          <p className="text-base mb-10" style={{ color: "var(--muted)" }}>
-            Have an idea, want to collaborate, or just want to say hi —<br className="hidden sm:block" /> my inbox is always open.
-          </p>
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
+            <Button href="mailto:vaibhavdabral1@gmail.com">
+              <Mail size={15} /> Say Hello <ArrowRight size={13} />
+            </Button>
+          </motion.div>
 
-          <a href="mailto:vaibhavdabral1@gmail.com"
-            className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white text-base mb-10">
-            <Mail size={17} />
-            Say Hello
-            <ArrowRight size={15} />
-          </a>
-
-          <div className="flex items-center justify-center gap-3">
-            {[
-              { icon: GithubIcon, label: "GitHub", href: "https://github.com" },
-              { icon: LinkedinIcon, label: "LinkedIn", href: "https://linkedin.com" },
-              { icon: XIcon, label: "Twitter / X", href: "https://x.com" },
-            ].map(({ icon: Icon, label, href }) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105 glass-card"
-                style={{ color: "var(--foreground)" }} aria-label={label}>
-                <Icon />
-                <span className="hidden sm:inline">{label}</span>
-              </a>
-            ))}
-          </div>
-        </motion.div>
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}>
+            <div className="flex items-center" style={{ gap: 12, marginTop: 24 }}>
+              {[
+                { icon: GithubIcon, label: "GitHub", href: "https://github.com/Vaibhav11566" },
+                { icon: LinkedinIcon, label: "LinkedIn", href: "https://linkedin.com" },
+                { icon: XIcon, label: "Twitter / X", href: "https://x.com" },
+                { icon: XIcon, label: "Instagram", href: "https://www.instagram.com/ifeelv1bhv?igsh=dXVncHFudDE1dGY4&utm_source=qr" },
+              ].map(({ icon: Icon, label, href }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                  className="glass-card flex items-center gap-2 text-sm font-medium"
+                  style={{ color: "var(--foreground)", padding: "10px 16px", borderRadius: "24px" }}>
+                  <span>{label}</span>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -2,24 +2,28 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0a0a0a;
+  --foreground: #0f0f12;
   --muted: #6b7280;
   --border: #e5e7eb;
-  --card: #f4f4f8;
+  --card: #f8f8fc;
+  --card-hover: #f0f0f8;
   --accent: #6366f1;
   --accent-2: #a855f7;
   --accent-glow: rgba(99, 102, 241, 0.15);
+  --section-alt: #f3f3f9;
 }
 
 .dark {
-  --background: #06060a;
-  --foreground: #f0f0f5;
+  --background: #07070c;
+  --foreground: #eeeef5;
   --muted: #8b8fa8;
-  --border: rgba(255,255,255,0.08);
-  --card: rgba(255,255,255,0.04);
+  --border: rgba(255, 255, 255, 0.07);
+  --card: rgba(255, 255, 255, 0.04);
+  --card-hover: rgba(255, 255, 255, 0.07);
   --accent: #818cf8;
   --accent-2: #c084fc;
   --accent-glow: rgba(129, 140, 248, 0.12);
+  --section-alt: rgba(255, 255, 255, 0.02);
 }
 
 @theme inline {
@@ -29,8 +33,29 @@
   --font-mono: var(--font-geist-mono);
 }
 
-* { box-sizing: border-box; padding: 0; margin: 0; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px;
+}
+svg, svg * { padding: 0; margin: 0; }
+*::before, *::after { padding: 0; margin: 0; }
 html { scroll-behavior: smooth; }
+
+button,
+a.btn,
+[role="button"],
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-outline {
+  background: rgb(196, 181, 253);
+  color: rgb(59, 7, 100);
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
 
 body {
   background: var(--background);
@@ -48,17 +73,45 @@ body {
 }
 
 .glass-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  will-change: transform, opacity;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.glass-card:hover {
-  border-color: rgba(129, 140, 248, 0.4);
-  box-shadow: 0 8px 40px rgba(99, 102, 241, 0.12), 0 0 0 1px rgba(129,140,248,0.1);
-  transform: translateY(-2px);
+@media (prefers-reduced-motion: no-preference) {
+  .glass-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.12);
+  }
+
+  .btn-animated:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+
+}
+
+nav a {
+  position: relative;
+  text-decoration: none;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background: rgb(196, 181, 253);
+  transition: width 0.25s ease;
+  padding: 0;
+  margin: 0;
+}
+nav a:hover::after {
+  width: 100%;
 }
 
 .grid-bg {
@@ -69,22 +122,103 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #6366f1, #a855f7);
-  box-shadow: 0 4px 24px rgba(99,102,241,0.35);
-  transition: all 0.2s ease;
+  background: rgb(196, 181, 253);
+  color: rgb(59, 7, 100);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-width: medium;
+  border-style: none;
+  border-color: currentcolor;
+  border-image: initial;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
 }
 .btn-primary:hover {
-  box-shadow: 0 8px 32px rgba(99,102,241,0.5);
-  transform: translateY(-1px) scale(1.02);
+  background: #a78bfa;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(167, 139, 250, 0.35);
 }
 
-.badge-live {
-  background: rgba(34,197,94,0.15);
-  border: 1px solid rgba(34,197,94,0.3);
-  color: #4ade80;
+.section-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
-.badge-soon {
-  background: rgba(129,140,248,0.12);
-  border: 1px solid rgba(129,140,248,0.25);
-  color: var(--accent);
+
+/* SPACING & GAPS */
+.section-padding {
+  padding: 80px 0;
+}
+
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.card-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.card-stack > .glass-card {
+  margin-bottom: 24px;
+}
+
+/* TYPOGRAPHY HIERARCHY */
+.section-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #a78bfa;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.section-heading {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.section-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 12px;
+}
+
+/* STAT CARDS */
+.stat-num {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.stat-tag {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* BUTTONS / BADGES */
+.badge-coming-soon {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-block;
 }

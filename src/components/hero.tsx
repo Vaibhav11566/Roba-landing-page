@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 const heroLineVariant = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 function MockupCard() {
@@ -14,7 +14,7 @@ function MockupCard() {
     <motion.div
       initial={{ opacity: 0, x: 60 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" as const }}
       className="relative w-full max-w-md ml-auto rounded-2xl overflow-hidden"
       style={{
         background: "rgba(15,15,25,0.95)",

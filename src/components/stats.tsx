@@ -44,7 +44,7 @@ export function Stats() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: [0, 0.15, 0.3][i] }}
+              transition={{ duration: 0.5, ease: "easeOut" as const, delay: [0, 0.15, 0.3][i] }}
               className="glass-card flex flex-col gap-3"
             >
               <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-1"

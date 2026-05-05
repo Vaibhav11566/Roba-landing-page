@@ -12,7 +12,7 @@ export function CTA() {
           initial={{ opacity: 0, y: 20, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeOut" as const }}
           className="relative overflow-hidden text-center"
           style={{
             background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f0f23 100%)",
